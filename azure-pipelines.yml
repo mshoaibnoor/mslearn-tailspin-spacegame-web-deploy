@@ -33,3 +33,11 @@ steps:
     arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=./MyCoverage/'
     publishTestResults: true
   displayName: 'Dotnet tests'
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish Code Coverage Results'
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(Build.SourcesDirectory)/**/MyCoverage/coverage.cobertura.xml'
+    failIfCoverageEmpty: true
+
